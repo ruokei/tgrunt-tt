@@ -1,10 +1,11 @@
-terraform {
-  required_providers {
-    openstack = {
-      source  = "terraform-provider-openstack/openstack"
-      version = "1.49.0"
-    }
-  }
+variable "key_pair_compute" {
+  description = "Key Pair and Instance List"
+  type = object({
+    instance_name = string
+    key_name      = string
+    public_key    = string
+    location      = list(string)
+  })
 }
 
 resource "openstack_compute_keypair_v2" "my-cloud-key" {
